@@ -1,0 +1,184 @@
+{
+  "class_9": {
+    "algebraic_expressions": {
+      "filename": "class_9_algebraic_expressions.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_algebraic_expressions.pdf",
+      "firebase_url": "https://storage.googleapis.com/ai-tutor-oshan.firebasestorage.app/chapters/class_9/algebraic_expressions.pdf",
+      "firebase_path": "chapters/class_9/algebraic_expressions.pdf",
+      "file_hash": "209dbb420de147ae3facaa6741e52e427ec377f8c611c9b0401039e70e7ebd41",
+      "upload_date": "2025-09-02T20:51:59.624550",
+      "text_chunks_count": 50,
+      "chapter_info": {
+        "id": "algebraic_expressions",
+        "name": "বীজগাণিতিক রাশি",
+        "englishName": "Algebraic Expressions",
+        "chapterNumber": "৩য় অধ্যায়",
+        "chapter_number": 3,
+        "status": "local",
+        "status_text": "Local Only",
+        "firebase_url": null,
+        "class_level": 9
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "linear_equations": {
+      "filename": "class_9_linear_equations.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_linear_equations.pdf",
+      "firebase_url": "https://storage.googleapis.com/ai-tutor-oshan.firebasestorage.app/chapters/class_9/linear_equations.pdf",
+      "firebase_path": "chapters/class_9/linear_equations.pdf",
+      "file_hash": "0e0e736afc842598181679a4d51e0e61ab65d5ab26af619d5ea001d5ea308bf9",
+      "upload_date": "2025-08-29T20:10:10.915547",
+      "text_chunks_count": 37,
+      "chapter_info": {
+        "id": "linear_equations",
+        "name": "এক চলকবিশিষ্ট সমীকরণ",
+        "englishName": "Linear Equations in One Variable",
+        "chapterNumber": "৫ম অধ্যায়",
+        "chapter_number": 5
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "indices_logarithms": {
+      "filename": "class_9_indices_logarithms.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_indices_logarithms.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/indices_logarithms.pdf",
+      "file_hash": "8dc237afed449ef4f9778f707f39c9defb2ac600e5fe31d9f73ed8277c07ecc1",
+      "upload_date": "2025-08-29T08:39:53.146123",
+      "text_chunks_count": 23,
+      "chapter_info": {
+        "name": "সূচক ও লগারিদম",
+        "englishName": "Indices and Logarithms",
+        "chapter_number": 4
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "lines_angles_triangles": {
+      "filename": "class_9_lines_angles_triangles.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_lines_angles_triangles.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/lines_angles_triangles.pdf",
+      "file_hash": "f2d48d934773280889fa06a0375592b3da00a01081d3e6c19fc497c54043dd6c",
+      "upload_date": "2025-08-29T09:28:41.709225",
+      "text_chunks_count": 43,
+      "chapter_info": {
+        "name": "রেখা, কোণ ও ত্রিভুজ",
+        "englishName": "Lines, Angles and Triangles",
+        "chapter_number": 6
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "statistics": {
+      "filename": "class_9_statistics.pdf",
+      "local_path": "d:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_statistics.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/statistics.pdf",
+      "file_hash": "c4949b54282b12a80720fad0db7f77ec4d6e6930b7871bcbfefd05044154e131",
+      "upload_date": "2025-08-29T10:46:13.774687",
+      "text_chunks_count": 37,
+      "chapter_info": {
+        "name": "পরিসংখ্যান",
+        "englishName": "Statistics",
+        "chapter_number": 8
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "circle": {
+      "filename": "class_9_circle.pdf",
+      "local_path": "d:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_circle.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/circle.pdf",
+      "file_hash": "b046412f29ea45ca20a70e00574bba93361066f7c57b9435616d1fb93bbef0f6",
+      "upload_date": "2025-08-29T10:56:18.520104",
+      "text_chunks_count": 27,
+      "chapter_info": {
+        "name": "বৃত্ত",
+        "englishName": "Circle",
+        "chapter_number": 14
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "real_numbers": {
+      "filename": "class_9_real_numbers.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_real_numbers.pdf",
+      "firebase_url": "https://storage.googleapis.com/ai-tutor-oshan.firebasestorage.app/chapters/class_9/real_numbers.pdf",
+      "firebase_path": "chapters/class_9/real_numbers.pdf",
+      "file_hash": "85355a09474810ba68854700bf1dcf26e10aad0b2038c46dfd1f0e43801c0712",
+      "upload_date": "2025-08-29T21:36:36.667341",
+      "text_chunks_count": 2,
+      "chapter_info": {
+        "id": "real_numbers",
+        "name": "বাস্তব সংখ্যা",
+        "englishName": "Real Numbers",
+        "chapterNumber": "১ম অধ্যায়",
+        "chapter_number": 1
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "circles": {
+      "filename": "class_9_circles.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_circles.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/circles.pdf",
+      "file_hash": "c4949b54282b12a80720fad0db7f77ec4d6e6930b7871bcbfefd05044154e131",
+      "upload_date": "2025-08-29T18:59:46.075460",
+      "text_chunks_count": 37,
+      "chapter_info": {
+        "id": "circles",
+        "name": "বৃত্ত",
+        "englishName": "Circles",
+        "chapterNumber": "৮ম অধ্যায়",
+        "chapter_number": 8
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "distance_height": {
+      "filename": "class_9_distance_height.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_distance_height.pdf",
+      "firebase_url": null,
+      "firebase_path": "chapters/class_9/distance_height.pdf",
+      "file_hash": "fa350182f1287421c2aee89c0106c666bcb121716b37eff2fe225d3900187210",
+      "upload_date": "2025-08-29T19:13:53.016806",
+      "text_chunks_count": 17,
+      "chapter_info": {
+        "id": "distance_height",
+        "name": "দূরত্ব ও উচ্চতা",
+        "englishName": "Distance and Height",
+        "chapterNumber": "১০ম অধ্যায়",
+        "chapter_number": 10,
+        "status": "missing",
+        "status_text": "Not Uploaded"
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    },
+    "algebraic_ratios": {
+      "filename": "class_9_algebraic_ratios.pdf",
+      "local_path": "D:\\Business\\ai_tutor_mvp\\pdf_management_service\\data\\chapters\\class_9_algebraic_ratios.pdf",
+      "firebase_url": "https://storage.googleapis.com/ai-tutor-oshan.firebasestorage.app/chapters/class_9/algebraic_ratios.pdf",
+      "firebase_path": "chapters/class_9/algebraic_ratios.pdf",
+      "file_hash": "f880f25ab6e54c747ee004d72871be4b5236401483577b0e3f21f4e152e42fd7",
+      "upload_date": "2025-08-29T19:17:22.137467",
+      "text_chunks_count": 35,
+      "chapter_info": {
+        "id": "algebraic_ratios",
+        "name": "বীজগাণিতিক অনুপাত ও সমানুপাত",
+        "englishName": "Algebraic Ratios and Proportions",
+        "chapterNumber": "১১শ অধ্যায়",
+        "chapter_number": 11,
+        "status": "missing",
+        "status_text": "Not Uploaded"
+      },
+      "class_level": 9,
+      "subject": "Mathematics"
+    }
+  }
+}

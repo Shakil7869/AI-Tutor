@@ -1,0 +1,9 @@
+# Alternative requirements with more conservative versions
+Flask>=2.0.0
+PyMuPDF
+Pillow
+Werkzeug>=2.0.0
+
+# Optional - Firebase dependencies (comment out if not using Firebase)
+# firebase-admin
+# google-cloud-storage

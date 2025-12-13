@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCTB PDF Book Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .firebase-status {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .firebase-enabled {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .firebase-disabled {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .upload-section {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .upload-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+        .upload-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+            display: none;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #229954;
+        }
+        .info-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 NCTB Mathematics PDF Book Manager</h1>
+        
+        <!-- Firebase Status -->
+        <div class="firebase-status {{ 'firebase-enabled' if firebase_status.startswith('✅') else 'firebase-disabled' }}">
+            🔥 Firebase Status: {{ firebase_status }}
+            {% if not firebase_status.startswith('✅') %}
+            <br><small>Running in local-only mode. <a href="/firebase-setup">Setup Firebase</a> for cloud features.</small>
+            {% endif %}
+        </div>
+        
+        <div class="info-box">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Select the class level (9 or 10)</li>
+                <li>Upload the corresponding NCTB Mathematics PDF textbook</li>
+                <li>After upload, go to "Configure Chapters" to set page ranges</li>
+                <li>Each chapter will be accessible to students with only relevant pages</li>
+            </ol>
+        </div>
+
+        <div class="upload-section">
+            <h2>Upload NCTB Mathematics Textbook</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="classLevel">Class Level:</label>
+                    <select id="classLevel" name="class_level" required>
+                        <option value="">Select Class</option>
+                        <option value="9">Class 9 (নবম শ্রেণী)</option>
+                        <option value="10">Class 10 (দশম শ্রেণী)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pdfFile">PDF File:</label>
+                    <input type="file" id="pdfFile" name="file" accept=".pdf" required>
+                </div>
+                
+                <button type="submit" class="upload-btn" id="uploadBtn">
+                    📤 Upload PDF Book
+                </button>
+            </form>
+            
+            <div class="progress" id="uploadProgress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="status" id="statusMessage"></div>
+        </div>
+
+        <div class="nav-links">
+            <a href="/configure">⚙️ Configure Chapters</a>
+            <a href="/status">📊 Service Status</a>
+        </div>
+
+        <div class="info-box">
+            <h3>Supported Chapters (17 Total):</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                {% for chapter_id, chapter_info in chapters.items() %}
+                <div>{{ chapter_info.number }}. {{ chapter_info.bengali }} ({{ chapter_info.english }})</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            const fileInput = document.getElementById('pdfFile');
+            const classLevel = document.getElementById('classLevel').value;
+            const uploadBtn = document.getElementById('uploadBtn');
+            const statusDiv = document.getElementById('statusMessage');
+            const progressDiv = document.getElementById('uploadProgress');
+            const progressBar = document.getElementById('progressBar');
+            
+            if (!fileInput.files[0] || !classLevel) {
+                showStatus('Please select both class level and PDF file.', 'error');
+                return;
+            }
+            
+            // Validate file size (max 500MB)
+            if (fileInput.files[0].size > 500 * 1024 * 1024) {
+                showStatus('File size too large. Maximum 500MB allowed.', 'error');
+                return;
+            }
+            
+            formData.append('file', fileInput.files[0]);
+            formData.append('class_level', classLevel);
+            
+            // Disable upload button and show progress
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Uploading...';
+            progressDiv.style.display = 'block';
+            statusDiv.style.display = 'none';
+            
+            // Simulate upload progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 95) progress = 95;
+                progressBar.style.width = progress + '%';
+            }, 500);
+            
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                clearInterval(progressInterval);
+                progressBar.style.width = '100%';
+                
+                setTimeout(() => {
+                    progressDiv.style.display = 'none';
+                    
+                    if (data.success) {
+                        showStatus(data.message, 'success');
+                        // Reset form
+                        document.getElementById('uploadForm').reset();
+                    } else {
+                        showStatus('Upload failed: ' + data.error, 'error');
+                    }
+                    
+                    // Re-enable upload button
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = '📤 Upload PDF Book';
+                }, 1000);
+            })
+            .catch(error => {
+                clearInterval(progressInterval);
+                progressDiv.style.display = 'none';
+                showStatus('Upload failed: ' + error.message, 'error');
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = '📤 Upload PDF Book';
+            });
+        });
+        
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + type;
+            statusDiv.style.display = 'block';
+        }
+        
+        // File input change handler
+        document.getElementById('pdfFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+                console.log(`Selected file: ${file.name} (${fileSize} MB)`);
+            }
+        });
+    </script>
+</body>
+</html>

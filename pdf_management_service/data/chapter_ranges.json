@@ -1,0 +1,90 @@
+{
+  "class_9": {
+    "algebraic_expressions": {
+      "start": 49,
+      "end": 80,
+      "chapter_number": 3
+    },
+    "algebraic_ratios": {
+      "start": 211,
+      "end": 229,
+      "chapter_number": 11
+    },
+    "area_theorems": {
+      "start": 291,
+      "end": 299,
+      "chapter_number": 15
+    },
+    "circles": {
+      "start": 158,
+      "end": 179,
+      "chapter_number": 8
+    },
+    "distance_height": {
+      "start": 203,
+      "end": 210,
+      "chapter_number": 10
+    },
+    "finite_series": {
+      "start": 255,
+      "end": 271,
+      "chapter_number": 13
+    },
+    "indices_logarithms": {
+      "start": 81,
+      "end": 98,
+      "chapter_number": 4
+    },
+    "linear_equations": {
+      "start": 99,
+      "end": 116,
+      "chapter_number": 5
+    },
+    "lines_angles_triangles": {
+      "start": 117,
+      "end": 141,
+      "chapter_number": 6
+    },
+    "mensuration": {
+      "start": 300,
+      "end": 331,
+      "chapter_number": 16
+    },
+    "practical_geometry": {
+      "start": 142,
+      "end": 157,
+      "chapter_number": 7
+    },
+    "ratio_similarity_symmetry": {
+      "start": 272,
+      "end": 290,
+      "chapter_number": 14
+    },
+    "real_numbers": {
+      "start": 6,
+      "end": 26,
+      "chapter_number": 1
+    },
+    "sets_functions": {
+      "start": 27,
+      "end": 48,
+      "chapter_number": 2
+    },
+    "simultaneous_equations": {
+      "start": 230,
+      "end": 254,
+      "chapter_number": 12
+    },
+    "statistics": {
+      "start": 332,
+      "end": 350,
+      "chapter_number": 17
+    },
+    "trigonometric_ratios": {
+      "start": 180,
+      "end": 202,
+      "chapter_number": 9
+    }
+  },
+  "class_10": {}
+}

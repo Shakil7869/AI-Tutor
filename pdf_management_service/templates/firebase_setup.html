@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Setup - NCTB PDF Manager</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #2980b9;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Setup Guide</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Notice:</strong> Firebase is currently not configured. Your PDF service is running in local-only mode. 
+            Follow this guide to enable cloud features.
+        </div>
+
+        <h2>1. Create Firebase Project</h2>
+        <div class="step">
+            <h3>Steps:</h3>
+            <ol>
+                <li>Go to <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
+                <li>Click "Create a project"</li>
+                <li>Project name: <code>ai-tutor-nctb</code></li>
+                <li>Enable Google Analytics (optional)</li>
+                <li>Choose your country/region</li>
+                <li>Click "Create project"</li>
+            </ol>
+        </div>
+
+        <h2>2. Enable Firebase Services</h2>
+        <div class="step">
+            <h3>Firebase Storage:</h3>
+            <ol>
+                <li>In your Firebase project, go to <strong>Storage</strong></li>
+                <li>Click "Get started"</li>
+                <li>Start in test mode (we'll secure it later)</li>
+                <li>Choose your storage location</li>
+            </ol>
+            
+            <h3>Firestore Database:</h3>
+            <ol>
+                <li>Go to <strong>Firestore Database</strong></li>
+                <li>Click "Create database"</li>
+                <li>Start in test mode</li>
+                <li>Choose your region (same as Storage)</li>
+            </ol>
+        </div>
+
+        <h2>3. Download Service Account Key</h2>
+        <div class="step">
+            <h3>For Python Service:</h3>
+            <ol>
+                <li>Go to <strong>Project Settings</strong> (gear icon)</li>
+                <li>Go to <strong>Service accounts</strong> tab</li>
+                <li>Click "Generate new private key"</li>
+                <li>Download the JSON file</li>
+                <li>Rename it to <code>firebase_config.json</code></li>
+                <li>Place it in: <code>pdf_management_service/config/firebase_config.json</code></li>
+            </ol>
+            
+            <div class="warning">
+                <strong>Security Note:</strong> Keep this file secure! It provides admin access to your Firebase project.
+            </div>
+        </div>
+
+        <h2>4. Update Configuration</h2>
+        <div class="step">
+            <h3>Update Storage Bucket Name:</h3>
+            <p>In <code>pdf_manager_firebase.py</code>, find line 53 and update:</p>
+            <div class="code-block">
+'storageBucket': 'your-project-id.appspot.com'  # Replace with your actual bucket
+            </div>
+            <p>Replace with your actual project ID from Firebase Console.</p>
+        </div>
+
+        <h2>5. Restart the Service</h2>
+        <div class="step">
+            <h3>Commands:</h3>
+            <div class="code-block">
+# Stop current service (Ctrl+C)
+# Then restart with Firebase support:
+cd pdf_management_service
+python pdf_manager_firebase.py
+            </div>
+        </div>
+
+        <h2>6. Security Rules (Important!)</h2>
+        <div class="step">
+            <h3>Firestore Rules:</h3>
+            <p>Go to Firestore → Rules and replace with:</p>
+            <div class="code-block">
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /nctb_chapters/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /nctb_pdfs/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+            </div>
+            
+            <h3>Storage Rules:</h3>
+            <p>Go to Storage → Rules and replace with:</p>
+            <div class="code-block">
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /textbooks/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /chapters/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+            </div>
+        </div>
+
+        <div class="success">
+            <h3>✅ Benefits of Firebase Integration:</h3>
+            <ul>
+                <li><strong>Cloud Backup:</strong> PDFs and configurations safe in cloud</li>
+                <li><strong>Multi-Device Access:</strong> Use from any device</li>
+                <li><strong>Automatic Sync:</strong> Real-time updates</li>
+                <li><strong>Scalability:</strong> Handle multiple users</li>
+                <li><strong>Offline Support:</strong> Cached data works offline</li>
+            </ul>
+        </div>
+
+        <h2>7. Test the Setup</h2>
+        <div class="step">
+            <ol>
+                <li>After restarting the service, you should see: <code>🔥 Firebase enabled - using cloud storage and database</code></li>
+                <li>Upload a PDF - it will go to Firebase Storage</li>
+                <li>Configure chapters - they will be saved to Firestore</li>
+                <li>Check Firebase Console to see your data</li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <h3>🔧 Troubleshooting:</h3>
+            <ul>
+                <li><strong>Service won't start:</strong> Check if <code>firebase_config.json</code> is valid JSON</li>
+                <li><strong>Permission errors:</strong> Verify service account has Storage Admin role</li>
+                <li><strong>Upload fails:</strong> Check Storage rules allow writes</li>
+                <li><strong>Can't read data:</strong> Check Firestore rules allow reads</li>
+            </ul>
+        </div>
+
+        <div class="nav-links">
+            <a href="/">← Back to Upload</a>
+            <a href="/configure">Configure Chapters</a>
+            <a href="/status">Service Status</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+flask==3.0.0
+PyMuPDF==1.23.21
+pinecone-client==4.1.1
+openai==1.40.0
+firebase-admin==6.5.0
+werkzeug==3.0.1
+pathlib==1.0.1
