@@ -66,15 +66,28 @@ flutterfire configure --project=your-project-id
 ```
 
 ### 3. API Keys Configuration
-Update `lib/src/core/config/app_config.dart` with your API keys:
-```dart
-class AppConfig {
-  static const String openAIApiKey = 'your-openai-api-key';
-  static const String pineconeApiKey = 'your-pinecone-api-key';
-  static const String pineconeEnvironment = 'your-pinecone-env';
-  static const String pineconeIndexName = 'your-index-name';
-}
+Create a `.env` file in the project root with your API keys:
+```env
+# OpenAI Configuration
+OPENAI_API_KEY=your-actual-openai-api-key-here
+
+# Pinecone Configuration
+PINECONE_API_KEY=your-actual-pinecone-api-key-here
+
+# Firebase Configuration (from your Firebase service account)
+FIREBASE_PROJECT_ID=your-firebase-project-id
+FIREBASE_PRIVATE_KEY_ID=your-private-key-id
+FIREBASE_PRIVATE_KEY=your-private-key-here
+FIREBASE_CLIENT_EMAIL=your-client-email@firebase.com
+FIREBASE_CLIENT_ID=your-client-id
+FIREBASE_AUTH_URI=https://accounts.google.com/o/oauth2/auth
+FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
+FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
+FIREBASE_CLIENT_X509_CERT_URL=your-client-x509-cert-url
 ```
+
+**Important:** Never commit the `.env` file to version control. It's listed in `.gitignore` for security.
+Reference `.env.example` for the required variables format.
 
 ### 4. Firebase Collections Setup
 Create the following Firestore collections:
@@ -135,17 +148,29 @@ firebase deploy --only hosting
 
 ## 🔐 Environment Variables
 
-For production, move sensitive data to environment variables:
+All sensitive configuration is managed through environment variables in the `.env` file.
 
-```dart
-// Use flutter_dotenv or similar
-class AppConfig {
-  static String get openAIApiKey => 
-    const String.fromEnvironment('OPENAI_API_KEY');
-  static String get pineconeApiKey => 
-    const String.fromEnvironment('PINECONE_API_KEY');
-}
-```
+### Setup
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in your actual credentials:
+   ```env
+   OPENAI_API_KEY=sk-...
+   FIREBASE_PROJECT_ID=your-project-id
+   # ... (see .env.example for all required variables)
+   ```
+
+3. The application automatically loads these at runtime using `flutter_dotenv`
+
+### Security Best Practices
+- ✅ Never commit `.env` to version control
+- ✅ Each developer/environment has their own `.env`
+- ✅ Use different credentials for dev/staging/production
+- ✅ Rotate API keys regularly
+- ✅ Monitor API usage and costs
 
 ## 📊 Firebase Analytics Events
 
